@@ -67,7 +67,7 @@ abstract class FlexiblePresenter implements FlexiblePresenterContract, Arrayable
         if (is_null($collection)) {
             return new static(null);
         } elseif ($collection instanceof AbstractPaginator) {
-            return new static($collection);
+            return new static(null);
         } elseif ($collection instanceof Arrayable) {
             return new static($collection);
         }
