@@ -158,9 +158,10 @@ abstract class FlexiblePresenter implements FlexiblePresenterContract, Arrayable
             return $this->buildPaginationCollection();
         }
 
-        $this->validateKeys();
+        $values = $this->values();
+        $this->validateKeys($values);
 
-        return collect($this->values())
+        return collect($values)
             ->filter(function ($value, $key) {
                 return empty($this->only)
                     ? true
@@ -239,10 +240,10 @@ abstract class FlexiblePresenter implements FlexiblePresenterContract, Arrayable
         });
     }
 
-    protected function validateKeys(): void
+    protected function validateKeys($values): void
     {
         $validKeys = array_merge(
-            array_keys($this->values()),
+            array_keys($values),
             array_keys($this->with)
         );
 
